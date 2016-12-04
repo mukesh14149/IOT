@@ -1,0 +1,4 @@
+Need to install node js and download and import express module.
+open cmd or terminal and go to the file name 'server.js'
+type:- node server.js
+

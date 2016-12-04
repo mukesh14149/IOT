@@ -1,0 +1,26 @@
+<html>
+    <head>
+	 <meta http-equiv="refresh" content="2">
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    	
+    </head>
+    <body>
+        <div id="plot" style="width: 480px; height: 400px;"></div>
+    	<script>
+            	   var data = [
+	                  		{
+		                        x: [{{Time}}],
+		                        y:  [{{Temperature}}],
+		    					type: 'scatter'
+	                    		}
+                	]
+		   var layout = {
+						  xaxis: {title: 'Time'},
+						  yaxis: {title: 'Temperature in Celcius'},
+						  hovermode: 'closest'
+			};	   
+            Plotly.newPlot('plot', data,layout);
+        </script>
+  
+    </body>
+</html>

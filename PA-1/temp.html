@@ -1,0 +1,69 @@
+<html>
+	<head>
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<script>
+		var temp = [];
+	    	var time = [];
+		var cou=-1;
+		function fetchtemp(){
+			cou++;
+			if(cou>10)
+				clearInterval(a);
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.open("GET",'http://devices.webofthings.io/pi/sensors/temperature/',false);
+			xmlhttp.send(null);
+			var html = xmlhttp.responseText;
+		
+
+			//document.write(lines);
+			//console.log(lines);
+
+			var tempDiv = document.createElement('div');
+			tempDiv.innerHTML = html.replace(/<script(.|\s)*?\/script>/g, '');
+			var s=tempDiv.getElementsByTagName('li');
+
+
+			//document.write(s.length);
+			var va=s[4].innerHTML.split('at:');
+			//document.write(va[1]);
+			var tem= va[1].split('T');
+			//document.write(tem[1]);
+			var tem1=tem[1].split('.');
+			time.push(tem1[0]);
+
+			var va=s[5].innerHTML.split(':');
+			temp.push(va[1]);
+
+			document.getElementById("tem"+cou).innerText = tem1[0]+" ->"+va[1];          	
+			var res = [
+					{
+	    					x: time,
+	    					y: temp,
+	    					type: 'scatter'
+	  				}
+				  ]	
+			Plotly.newPlot('graph', res);	
+				
+					
+			}	
+		var a=setInterval(fetchtemp,1000);
+	</script>
+</head>
+<body>
+		<div id="graph" ></div>
+    		<p id="tem1"></p>
+		<p id="tem2"></p>
+		<p id="tem3"></p>
+		<p id="tem4"></p>
+		<p id="tem5"></p>
+		<p id="tem6"></p>
+		<p id="tem7"></p>
+		<p id="tem8"></p>
+		<p id="tem9"></p>
+		<p id="tem10"></p>
+		
+		
+</body>
+</html>
+
+

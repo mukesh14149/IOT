@@ -1,0 +1,3 @@
+run cmd "npm install node-cmd" if not installed
+run cmd "npm install -g express" if not installed
+run the server.js file
